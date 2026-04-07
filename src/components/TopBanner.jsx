@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -17,6 +18,7 @@ const TopBanner = () => {
         justifyContent: 'center',
         fontWeight: '700',
         fontSize: '0.875rem',
+        letterSpacing: '0.5px',
         gap: '0.5rem',
         position: 'sticky',
         top: 0,

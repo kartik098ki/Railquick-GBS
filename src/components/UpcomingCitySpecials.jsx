@@ -14,49 +14,68 @@ const UpcomingCitySpecials = ({ onAddToCart }) => {
         <h2 className="h2" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <MapPin size={22} className="text-accent" /> Upcoming City Famous
         </h2>
-        <button style={{ background: 'none', border: 'none', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+        <button style={{ background: 'none', border: 'none', color: 'var(--primary-green)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
           View all <ArrowRight size={16} />
         </button>
       </div>
 
-      <div className="hide-scroll" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+      <div className="hide-scroll" style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
         {specials.map((special) => (
-          <div key={special.id} className="glass-panel" style={{ minWidth: '160px', padding: '0.75rem', display: 'flex', flexDirection: 'column' }}>
+          <div key={special.id} style={{ 
+            minWidth: '150px', 
+            padding: '0.5rem', 
+            display: 'flex', 
+            flexDirection: 'column',
+            backgroundColor: 'var(--bg-card)',
+            border: '1px solid var(--border-light)',
+            borderRadius: '0.5rem',
+            boxShadow: 'var(--shadow-sm)'
+          }}>
             <div style={{ 
-              height: '100px', 
-              borderRadius: '0.5rem', 
+              height: '110px', 
+              borderRadius: '0.25rem', 
               backgroundImage: `url(${special.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              marginBottom: '0.75rem',
-              position: 'relative'
+              marginBottom: '0.5rem',
+              position: 'relative',
+              backgroundColor: '#f8f8f8'
             }}>
               <div style={{
                 position: 'absolute',
-                bottom: '-10px',
+                bottom: '-8px',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 background: 'var(--accent-orange)',
                 color: '#fff',
-                fontSize: '0.65rem',
+                fontSize: '0.6rem',
                 fontWeight: '700',
-                padding: '0.2rem 0.5rem',
-                borderRadius: '999px',
+                padding: '0.2rem 0.4rem',
+                borderRadius: '0.25rem',
                 whiteSpace: 'nowrap',
-                boxShadow: 'var(--shadow-md)'
+                boxShadow: 'var(--shadow-sm)'
               }}>
                 ETA: {special.eta}
               </div>
             </div>
             <div style={{ marginTop: '0.5rem' }}>
               <div className="text-xs text-muted" style={{ fontWeight: '600', textTransform: 'uppercase' }}>{special.city}</div>
-              <div className="font-semibold" style={{ fontSize: '0.9rem', marginBottom: '0.25rem' }}>{special.item}</div>
+              <div className="font-semibold" style={{ fontSize: '0.85rem', marginBottom: '0.25rem', color: 'var(--text-dark)' }}>{special.item}</div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
-                <span className="font-bold">₹{special.price}</span>
+                <span className="font-bold" style={{ fontSize: '0.9rem', color: 'var(--text-dark)' }}>₹{special.price}</span>
                 <button 
                   onClick={() => onAddToCart(special)}
-                  className="btn btn-primary" 
-                  style={{ padding: '0.25rem 0.75rem', fontSize: '0.8rem' }}
+                  style={{ 
+                    backgroundColor: 'transparent',
+                    border: '1px solid var(--primary-green)',
+                    color: 'var(--primary-green)',
+                    fontWeight: '700',
+                    padding: '0.25rem 0.75rem', 
+                    fontSize: '0.75rem',
+                    borderRadius: '0.25rem',
+                    cursor: 'pointer',
+                    textTransform: 'uppercase'
+                  }}
                 >
                   ADD
                 </button>

@@ -4,6 +4,7 @@ import TopBanner from './components/TopBanner';
 import LiveDetection from './components/LiveDetection';
 import UpcomingCitySpecials from './components/UpcomingCitySpecials';
 import EssentialsGrid from './components/EssentialsGrid';
+import MedicineSection from './components/MedicineSection';
 import CheckoutModal from './components/CheckoutModal';
 
 function App() {
@@ -34,22 +35,24 @@ function App() {
       <main style={{ flex: 1, paddingBottom: 'env(safe-area-inset-bottom)' }}>
         {/* Animated Hero Text */}
         <div style={{ padding: '1.5rem 1rem 0.5rem' }} className="animate-slide-down">
-          <h1 className="h1" style={{ marginBottom: '0.5rem' }}>
+          <h1 className="h1" style={{ marginBottom: '0.5rem', color: 'var(--text-dark)' }}>
             Essentials delivered in <br />
             <span style={{ color: 'var(--primary-green)' }}>5 minutes</span> on your seat.
           </h1>
           <p className="text-muted text-sm">No waiting. No missing trains.</p>
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
+        <div className="animate-fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
           <LiveDetection />
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
+        <MedicineSection onAddToCart={handleAddToCart} />
+
+        <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
           <UpcomingCitySpecials onAddToCart={handleAddToCart} />
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: '400ms', animationFillMode: 'both' }}>
+        <div className="animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
           <EssentialsGrid onAddToCart={handleAddToCart} />
         </div>
       </main>

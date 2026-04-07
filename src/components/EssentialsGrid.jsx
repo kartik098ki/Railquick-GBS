@@ -20,28 +20,46 @@ const EssentialsGrid = ({ onAddToCart }) => {
       <div style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', 
-        gap: '1rem' 
+        gap: '0.75rem' 
       }}>
         {products.map((product) => (
-          <div key={product.id} className="glass-panel" style={{ padding: '0.75rem', display: 'flex', flexDirection: 'column' }}>
+          <div key={product.id} style={{ 
+            backgroundColor: 'var(--bg-card)',
+            border: '1px solid var(--border-light)',
+            borderRadius: '0.5rem',
+            padding: '0.5rem', 
+            display: 'flex', 
+            flexDirection: 'column',
+            boxShadow: 'var(--shadow-sm)'
+          }}>
             <div style={{
-              height: '100px',
-              borderRadius: '0.5rem',
+              height: '110px',
+              borderRadius: '0.25rem',
               backgroundImage: `url(${product.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              marginBottom: '0.75rem'
+              marginBottom: '0.5rem',
+              backgroundColor: '#f8f8f8'
             }}></div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.7rem', color: 'var(--text-muted)', marginBottom: '0.25rem', fontWeight: '600' }}>
-              <Clock size={12} /> {product.time} delivery
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: '0.25rem', fontWeight: '600', backgroundColor: '#f1f5f9', padding: '0.1rem 0.3rem', borderRadius: '0.2rem', width: 'fit-content' }}>
+              <Clock size={10} /> {product.time}
             </div>
-            <div className="font-semibold" style={{ fontSize: '0.9rem', marginBottom: '0.5rem', lineHeight: '1.2' }}>{product.name}</div>
+            <div className="font-semibold" style={{ fontSize: '0.85rem', marginBottom: '0.5rem', lineHeight: '1.2', color: 'var(--text-dark)' }}>{product.name}</div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
-              <span className="font-bold">₹{product.price}</span>
+              <span className="font-bold" style={{ fontSize: '0.9rem', color: 'var(--text-dark)' }}>₹{product.price}</span>
               <button 
                 onClick={() => onAddToCart(product)}
-                className="btn btn-primary" 
-                style={{ padding: '0.25rem 0.75rem', fontSize: '0.8rem' }}
+                style={{ 
+                  backgroundColor: 'transparent',
+                  border: '1px solid var(--primary-green)',
+                  color: 'var(--primary-green)',
+                  fontWeight: '700',
+                  padding: '0.25rem 0.75rem', 
+                  fontSize: '0.75rem',
+                  borderRadius: '0.25rem',
+                  cursor: 'pointer',
+                  textTransform: 'uppercase'
+                }}
               >
                 ADD
               </button>

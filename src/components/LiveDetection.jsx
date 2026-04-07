@@ -3,7 +3,16 @@ import { LocateFixed, TrainFront } from 'lucide-react';
 
 const LiveDetection = () => {
   return (
-    <div className="glass-panel" style={{ margin: '1rem', padding: '1.5rem', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ 
+      margin: '1rem', 
+      padding: '1.5rem', 
+      position: 'relative', 
+      overflow: 'hidden',
+      backgroundColor: 'var(--bg-card)',
+      border: '1px solid var(--border-light)',
+      borderRadius: '12px',
+      boxShadow: 'var(--shadow-sm)'
+    }}>
       
       {/* Radar rings animation backdrop */}
       <div style={{
@@ -14,7 +23,7 @@ const LiveDetection = () => {
         width: '100px',
         height: '100px',
         borderRadius: '50%',
-        background: 'rgba(16, 185, 129, 0.2)',
+        background: 'rgba(12, 131, 31, 0.1)',
         zIndex: 0,
       }} className="radar-ping"></div>
 
@@ -27,12 +36,12 @@ const LiveDetection = () => {
           alignItems: 'center',
           justifyContent: 'center',
           color: '#fff',
-          boxShadow: '0 0 15px rgba(16, 185, 129, 0.5)'
+          boxShadow: '0 0 10px rgba(12, 131, 31, 0.3)'
         }}>
           <LocateFixed size={28} />
         </div>
         <div style={{ flex: 1 }}>
-          <h2 className="h3" style={{ marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <h2 className="h3" style={{ marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-dark)' }}>
             Live Seat Radar <TrainFront size={18} className="text-muted" />
           </h2>
           <p className="text-sm text-muted">
@@ -44,9 +53,9 @@ const LiveDetection = () => {
       <div style={{ 
         marginTop: '1rem', 
         padding: '0.75rem', 
-        background: 'rgba(0,0,0,0.3)', 
+        background: 'var(--bg-main)', 
         borderRadius: '0.5rem',
-        border: '1px solid rgba(16, 185, 129, 0.2)',
+        border: '1px solid var(--border-light)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between'

@@ -2,31 +2,29 @@
 
 :root {
   /* Color Palette */
-  --bg-dark: #0f172a;
-  --bg-darker: #020617;
-  --bg-card: rgba(30, 41, 59, 0.7);
+  --bg-main: #f4f6f8; /* Light gray background like Blinkit */
+  --bg-card: #ffffff;
   
-  --primary-green: #10b981; /* Emerald */
-  --primary-green-dark: #059669;
-  --accent-orange: #f97316; /* Vibrant Orange */
+  --primary-green: #0c831f; /* Standard Blinkit Green */
+  --primary-green-dark: #0a6b18;
+  --primary-yellow: #fced15; /* Signature Yellow */
+  --accent-orange: #f97316;
   
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --text-dark: #0f172a;
+  --text-main: #1c1c1c;
+  --text-muted: #6b7280;
+  --text-dark: #000000;
   
-  --border-light: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-
+  --border-light: #e5e7eb;
+  
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   
   /* Layout */
   --header-height: 70px;
   --banner-height: 35px;
   --bottom-nav-height: 65px;
-  --app-max-width: 480px; /* Mobile first / PWA look */
+  --app-max-width: 480px;
 }
 
 * {
@@ -37,7 +35,7 @@
 
 body {
   font-family: 'Outfit', sans-serif;
-  background-color: var(--bg-darker);
+  background-color: #eef0f3; /* Outside app area */
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -49,19 +47,19 @@ body {
 #root {
   width: 100%;
   max-width: var(--app-max-width);
-  background-color: var(--bg-dark);
+  background-color: var(--bg-main);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
 }
 
 /* Typography Utilities */
-.h1 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
-.h2 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; }
-.h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; }
+.h1 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; color: var(--text-dark); }
+.h2 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; color: var(--text-dark); }
+.h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.4; color: var(--text-dark); }
 .text-sm { font-size: 0.875rem; }
 .text-xs { font-size: 0.75rem; }
 .font-bold { font-weight: 700; }
@@ -70,20 +68,19 @@ body {
 .text-primary { color: var(--primary-green); }
 .text-accent { color: var(--accent-orange); }
 
-/* Glassmorphism */
+/* Card Panels */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
 }
 
 /* Animations */
 @keyframes pulse-radar {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(12, 131, 31, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(12, 131, 31, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(12, 131, 31, 0); }
 }
 
 .radar-ping {
@@ -91,7 +88,7 @@ body {
 }
 
 @keyframes slideDown {
-  from { transform: translateY(-100%); opacity: 0; }
+  from { transform: translateY(-10%); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
@@ -156,7 +153,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  border-radius: 9999px; /* Pill UI */
+  border-radius: 0.5rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -171,7 +168,10 @@ body {
 .btn-primary {
   background-color: var(--primary-green);
   color: #fff;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
 }
 
 .btn-primary:hover {
@@ -187,6 +187,7 @@ body {
   background-color: transparent;
   border: 1px solid var(--border-light);
   color: var(--text-main);
+  background-color: var(--bg-card);
 }
 
 /* Inputs */
@@ -204,11 +205,11 @@ body {
 }
 
 .input-field {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--bg-main);
   border: 1px solid var(--border-light);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
-  color: var(--text-main);
+  color: var(--text-dark);
   font-family: inherit;
   font-size: 1rem;
   transition: border-color 0.2s;
@@ -217,6 +218,7 @@ body {
 .input-field:focus {
   outline: none;
   border-color: var(--primary-green);
+  background-color: var(--bg-card);
 }
 
 /* Custom Hide Scrollbar */
@@ -224,6 +226,7 @@ body {
   display: none;
 }
 .hide-scroll {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
