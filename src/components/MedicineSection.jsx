@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Sparkles, Pill, UploadCloud, PhoneCall, CheckCircle2, Loader2, X } from 'lucide-react';
+import { Sparkles, Pill, UploadCloud, PhoneCall, CheckCircle2, Loader2, X, Stethoscope, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MedicineSection = ({ onAddToCart }) => {
@@ -18,7 +18,6 @@ const MedicineSection = ({ onAddToCart }) => {
   const handleOpen = (type) => {
     setActiveTab(type);
     setModalOpen(true);
-    // Reset states
     setIsScanning(false);
     setScanComplete(false);
     setCallBooked(false);
@@ -39,57 +38,74 @@ const MedicineSection = ({ onAddToCart }) => {
 
   return (
     <>
-      <div style={{ padding: '0 1rem', marginTop: '1rem', marginBottom: '1rem' }}>
-        <h2 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.75rem', color: 'var(--text-dark)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-          <Sparkles size={16} color="var(--primary-green)" /> Quick Services
-        </h2>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-          {/* Tile 1 */}
-          <div 
-            onClick={() => handleOpen('rx')}
-            style={{ 
-              backgroundColor: '#e0f2fe', 
-              borderRadius: '0.5rem', 
-              padding: '0.75rem', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '0.5rem',
-              cursor: 'pointer',
-              border: '1px solid #bae6fd'
-            }}
-          >
-            <div style={{ background: '#fff', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <UploadCloud size={16} color="#0284c7" />
+      <div style={{ padding: '0 1rem', marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+        
+        {/* Unified E-commerce Banner */}
+        <div style={{ 
+          background: 'linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%)',
+          borderRadius: '12px',
+          border: '1px solid #bae6fd',
+          overflow: 'hidden',
+          boxShadow: 'var(--shadow-sm)',
+          position: 'relative'
+        }}>
+          <div style={{ padding: '1.25rem', position: 'relative', zIndex: 2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+              <Stethoscope size={18} color="#0369a1" />
+              <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#0369a1', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Health & Wellness Hub</span>
             </div>
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#0c4a6e' }}>Pharmacy</div>
-              <div style={{ fontSize: '0.65rem', color: '#0284c7' }}>Upload Rx via AI</div>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#0c4a6e', marginBottom: '0.5rem', lineHeight: '1.2' }}>Need Medicines on your Journey?</h3>
+            <p style={{ fontSize: '0.8rem', color: '#0284c7', marginBottom: '1.25rem', maxWidth: '80%' }}>Upload your Rx or consult an IRCTC doctor instantly.</p>
+            
+            <div style={{ display: 'flex', gap: '0.75rem' }}>
+              <button 
+                onClick={() => handleOpen('rx')}
+                style={{ 
+                  flex: 1, 
+                  backgroundColor: '#fff', 
+                  border: '1px solid #0284c7', 
+                  borderRadius: '0.5rem', 
+                  padding: '0.5rem', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '0.25rem', 
+                  color: '#0284c7', 
+                  fontWeight: '700', 
+                  fontSize: '0.75rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 4px rgba(2, 132, 199, 0.1)'
+                }}
+              >
+                <UploadCloud size={14} /> UPLOAD RX
+              </button>
+              <button 
+                onClick={() => handleOpen('doc')}
+                style={{ 
+                  flex: 1, 
+                  backgroundColor: '#0284c7', 
+                  border: 'none', 
+                  borderRadius: '0.5rem', 
+                  padding: '0.5rem', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '0.25rem', 
+                  color: '#fff', 
+                  fontWeight: '700', 
+                  fontSize: '0.75rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 2px 4px rgba(2, 132, 199, 0.3)'
+                }}
+              >
+                <PhoneCall size={14} /> CONSULT DOC
+              </button>
             </div>
           </div>
-
-          {/* Tile 2 */}
-          <div 
-            onClick={() => handleOpen('doc')}
-            style={{ 
-              backgroundColor: '#ffedd5', 
-              borderRadius: '0.5rem', 
-              padding: '0.75rem', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              gap: '0.5rem',
-              cursor: 'pointer',
-              border: '1px solid #fed7aa'
-            }}
-          >
-            <div style={{ background: '#fff', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <PhoneCall size={16} color="#ea580c" />
-            </div>
-            <div>
-              <div style={{ fontSize: '0.85rem', fontWeight: '700', color: '#7c2d12' }}>Consult Doctor</div>
-              <div style={{ fontSize: '0.65rem', color: '#ea580c' }}>IRCTC Medicos</div>
-            </div>
-          </div>
+          
+          {/* Abstract background shapes */}
+          <div style={{ position: 'absolute', top: '-10px', right: '-10px', width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(2, 132, 199, 0.1)', zIndex: 1 }}></div>
+          <div style={{ position: 'absolute', bottom: '-20px', right: '40px', width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(12, 131, 31, 0.1)', zIndex: 1 }}></div>
         </div>
       </div>
 

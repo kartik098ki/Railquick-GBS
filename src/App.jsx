@@ -51,14 +51,16 @@ function App() {
           <LiveDetection />
         </div>
 
-        <MedicineSection onAddToCart={handleAddToCart} />
-
         <div className="animate-fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
           <UpcomingCitySpecials onAddToCart={handleAddToCart} />
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both', marginBottom: '4rem' }}>
+        <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
           <EssentialsGrid onAddToCart={handleAddToCart} />
+        </div>
+
+        <div className="animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both', marginBottom: '4rem' }}>
+          <MedicineSection onAddToCart={handleAddToCart} />
         </div>
       </main>
 
