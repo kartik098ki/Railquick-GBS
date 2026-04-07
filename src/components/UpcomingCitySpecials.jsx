@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Plus, Minus } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const UpcomingCitySpecials = ({ onAddToCart }) => {
+const UpcomingCitySpecials = ({ cart, onAdd, onRemove }) => {
   // New Inventory: Premium Non-Food City Specials
   const specials = [
     { id: 101, city: 'Kanpur', name: 'Premium Leather Wallet', price: 850, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=200&h=200' },
@@ -24,7 +24,11 @@ const UpcomingCitySpecials = ({ onAddToCart }) => {
       </div>
 
       <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '1rem' }} className="hide-scrollbar">
-        {specials.map((item, index) => (
+        {specials.map((item, index) => {
+          const cartItem = cart.find(i => i.id === item.id);
+          const qty = cartItem ? cartItem.qty : 0;
+
+          return (
           <motion.div 
             key={item.id}
             initial={{ opacity: 0, x: 20 }}
@@ -55,13 +59,34 @@ const UpcomingCitySpecials = ({ onAddToCart }) => {
               
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                 <span style={{ fontWeight: '700', color: 'var(--text-dark)', fontSize: '0.9rem' }}>₹{item.price}</span>
-                <button className="add-btn" onClick={() => onAddToCart(item)}>
-                  ADD
-                </button>
+                
+                {qty > 0 ? (
+                    <div style={{ 
+                      display: 'flex', alignItems: 'center', 
+                      backgroundColor: 'var(--primary-accent)', color: '#fff', 
+                      borderRadius: '8px', overflow: 'hidden', boxShadow: '0 2px 5px rgba(30,58,138,0.2)'
+                    }}>
+                      <button 
+                        onClick={() => onRemove(item)}
+                        style={{ padding: '0.4rem', background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      ><Minus size={14} /></button>
+                      
+                      <span style={{ fontSize: '0.8rem', fontWeight: '700', padding: '0 0.2rem', minWidth: '16px', textAlign: 'center' }}>{qty}</span>
+                      
+                      <button 
+                        onClick={() => onAdd(item)}
+                        style={{ padding: '0.4rem', background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                      ><Plus size={14} /></button>
+                    </div>
+                  ) : (
+                    <button className="add-btn" onClick={() => onAdd(item)}>
+                      ADD
+                    </button>
+                  )}
               </div>
             </div>
           </motion.div>
-        ))}
+        )})}
       </div>
     </div>
   );

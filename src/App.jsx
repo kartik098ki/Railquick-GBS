@@ -3,6 +3,7 @@ import { Search } from 'lucide-react';
 import Header from './components/Header';
 import TopBanner from './components/TopBanner';
 import LiveDetection from './components/LiveDetection';
+import LiveJourneyTracker from './components/LiveJourneyTracker';
 import UpcomingCitySpecials from './components/UpcomingCitySpecials';
 import EssentialsGrid from './components/EssentialsGrid';
 import MedicineSection from './components/MedicineSection';
@@ -16,11 +17,29 @@ function App() {
   const categories = ['All', 'Electronics', 'Comfort', 'Hygiene', 'Reading', 'Medical'];
 
   const handleAddToCart = (item) => {
-    setCart((prev) => [...prev, item]);
+    setCart((prev) => {
+      const exists = prev.find(i => i.id === item.id);
+      if (exists) {
+        return prev.map(i => i.id === item.id ? { ...i, qty: i.qty + 1 } : i);
+      }
+      return [...prev, { ...item, qty: 1 }];
+    });
   };
 
+  const handleRemoveFromCart = (item) => {
+    setCart((prev) => {
+      const exists = prev.find(i => i.id === item.id);
+      if (exists && exists.qty > 1) {
+        return prev.map(i => i.id === item.id ? { ...i, qty: i.qty - 1 } : i);
+      }
+      return prev.filter(i => i.id !== item.id);
+    });
+  };
+
+  const totalCartCount = cart.reduce((count, item) => count + item.qty, 0);
+  
   const handleCartClick = () => {
-    if (cart.length > 0) {
+    if (totalCartCount > 0) {
       setIsCheckoutOpen(true);
     } else {
       alert("Your cart is empty! Add some items first.");
@@ -28,13 +47,13 @@ function App() {
   };
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
+    return cart.reduce((total, item) => total + (item.price * item.qty), 0);
   };
 
   return (
     <>
       <TopBanner />
-      <Header cartCount={cart.length} onCartClick={handleCartClick} />
+      <Header cartCount={totalCartCount} onCartClick={handleCartClick} />
       
       {/* Search Bar - Premium Theme */}
       <div style={{ 
@@ -92,12 +111,16 @@ function App() {
           <LiveDetection />
         </div>
 
+        <div className="animate-fade-in" style={{ animationDelay: '50ms', animationFillMode: 'both' }}>
+          <LiveJourneyTracker />
+        </div>
+
         <div className="animate-fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
-          <UpcomingCitySpecials onAddToCart={handleAddToCart} />
+          <UpcomingCitySpecials cart={cart} onAdd={handleAddToCart} onRemove={handleRemoveFromCart} />
         </div>
 
         <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
-          <EssentialsGrid onAddToCart={handleAddToCart} />
+          <EssentialsGrid cart={cart} onAdd={handleAddToCart} onRemove={handleRemoveFromCart} />
         </div>
 
         <div className="animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both', marginBottom: '4rem' }}>
