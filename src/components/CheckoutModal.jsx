@@ -96,8 +96,8 @@ const CheckoutModal = ({ isOpen, onClose, cartItems, totalAmount }) => {
                 </button>
               </div>
               
-              <div style={{ backgroundColor: '#f0fdf4', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', border: '2px solid var(--primary-green)' }}>
-                <CheckCircle2 size={40} color="var(--primary-green)" />
+              <div style={{ backgroundColor: '#f0fdf4', width: '80px', height: '80px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', border: '2px solid var(--accent-action)' }}>
+                <CheckCircle2 size={40} color="var(--accent-action)" />
               </div>
               
               <h2 className="h2" style={{ color: 'var(--text-dark)', marginBottom: '0.5rem' }}>Order Confirmed!</h2>
@@ -156,12 +156,12 @@ const CheckoutModal = ({ isOpen, onClose, cartItems, totalAmount }) => {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                   <label style={{
                     display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem',
-                    border: paymentMethod === 'upi' ? '2px solid var(--primary-green)' : '1px solid var(--border-light)',
+                    border: paymentMethod === 'upi' ? '2px solid var(--accent-action)' : '1px solid var(--border-light)',
                     borderRadius: '0.75rem', cursor: 'pointer',
                     background: paymentMethod === 'upi' ? '#f0fdf4' : 'var(--bg-card)',
                     transition: 'all 0.2s'
                   }}>
-                    <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={(e) => setPaymentMethod(e.target.value)} style={{ accentColor: 'var(--primary-green)', width: '1.25rem', height: '1.25rem' }} />
+                    <input type="radio" name="payment" value="upi" checked={paymentMethod === 'upi'} onChange={(e) => setPaymentMethod(e.target.value)} style={{ accentColor: 'var(--accent-action)', width: '1.25rem', height: '1.25rem' }} />
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                       <CreditCard className={paymentMethod === 'upi' ? "text-primary" : "text-muted"} />
                       <span className="font-semibold" style={{ color: 'var(--text-dark)' }}>UPI / Online Payment</span>
@@ -170,7 +170,7 @@ const CheckoutModal = ({ isOpen, onClose, cartItems, totalAmount }) => {
 
                   <label style={{
                     display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem',
-                    border: paymentMethod === 'cod' ? '2px solid var(--primary-green)' : '1px solid var(--border-light)',
+                    border: paymentMethod === 'cod' ? '2px solid var(--accent-action)' : '1px solid var(--border-light)',
                     borderRadius: '0.75rem', cursor: 'pointer',
                     background: paymentMethod === 'cod' ? '#f0fdf4' : 'var(--bg-card)',
                     transition: 'all 0.2s'

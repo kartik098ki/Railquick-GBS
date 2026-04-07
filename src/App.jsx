@@ -11,6 +11,9 @@ import CheckoutModal from './components/CheckoutModal';
 function App() {
   const [cart, setCart] = useState([]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const categories = ['All', 'Electronics', 'Comfort', 'Hygiene', 'Reading', 'Medical'];
 
   const handleAddToCart = (item) => {
     setCart((prev) => [...prev, item]);
@@ -33,16 +36,54 @@ function App() {
       <TopBanner />
       <Header cartCount={cart.length} onCartClick={handleCartClick} />
       
-      {/* Search Bar - Blinkit staple */}
-      <div style={{ padding: '0.5rem 1rem', backgroundColor: 'var(--primary-yellow)', position: 'sticky', top: 'calc(var(--banner-height) + var(--header-height))', zIndex: 30, borderBottom: '1px solid var(--border-light)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#fff', borderRadius: '0.5rem', padding: '0.6rem 1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', gap: '0.5rem' }}>
-          <Search size={18} color="var(--text-muted)" />
+      {/* Search Bar - Premium Theme */}
+      <div style={{ 
+        padding: '0.75rem 1.25rem', 
+        backgroundColor: '#fff', 
+        position: 'sticky', 
+        top: 'calc(var(--banner-height) + var(--header-height))', 
+        zIndex: 30,
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'var(--bg-main)', borderRadius: '12px', padding: '0.75rem 1rem', border: '1px solid var(--border-light)', gap: '0.5rem', transition: 'all 0.2s' }}>
+          <Search size={18} color="var(--primary-accent)" />
           <input 
             type="text" 
-            placeholder="Search 'chips', 'water'..." 
-            style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', fontSize: '0.9rem', color: 'var(--text-dark)' }} 
+            placeholder="Search chargers, wet wipes..." 
+            style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', fontSize: '0.95rem', color: 'var(--text-dark)', fontWeight: '500' }} 
           />
         </div>
+      </div>
+
+      {/* Category Horizontal Slider */}
+      <div style={{
+        display: 'flex',
+        overflowX: 'auto',
+        gap: '0.5rem',
+        padding: '1rem 1.25rem',
+        backgroundColor: 'var(--bg-main)',
+      }} className="hide-scrollbar">
+        {categories.map((cat) => (
+          <button 
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            style={{
+              padding: '0.4rem 1rem',
+              borderRadius: '2rem',
+              border: activeCategory === cat ? 'none' : '1px solid var(--border-light)',
+              backgroundColor: activeCategory === cat ? 'var(--primary-accent)' : '#fff',
+              color: activeCategory === cat ? '#fff' : 'var(--text-muted)',
+              fontSize: '0.8rem',
+              fontWeight: '600',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              transition: 'all 0.2s',
+              boxShadow: activeCategory === cat ? '0 2px 8px rgba(30, 58, 138, 0.3)' : 'none'
+            }}
+          >
+            {cat}
+          </button>
+        ))}
       </div>
 
       <main style={{ flex: 1, paddingBottom: 'env(safe-area-inset-bottom)' }}>

@@ -1,87 +1,66 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { MapPin, ArrowRight } from 'lucide-react';
-
-const specials = [
-  { id: 1, city: 'Agra', item: 'Panchi Petha', eta: '45 mins', price: 250, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=200&h=200' },
-  { id: 2, city: 'Mathura', item: 'Brijwasi Peda', eta: '1 hr 15 mins', price: 300, image: 'https://images.unsplash.com/photo-1559533306-2187f5d6f859?auto=format&fit=crop&q=80&w=200&h=200' },
-  { id: 3, city: 'Gwalior', item: 'Gajak', eta: '2 hrs 30 mins', price: 150, image: 'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&q=80&w=200&h=200' },
-];
+import { MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const UpcomingCitySpecials = ({ onAddToCart }) => {
+  // New Inventory: Premium Non-Food City Specials
+  const specials = [
+    { id: 101, city: 'Kanpur', name: 'Premium Leather Wallet', price: 850, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&q=80&w=200&h=200' },
+    { id: 102, city: 'Lucknow', name: 'Handcrafted Chikankari Pouch', price: 350, image: 'https://images.unsplash.com/photo-1605792657660-596af9009e82?auto=format&fit=crop&q=80&w=200&h=200' },
+  ];
+
   return (
-    <div style={{ padding: '1rem' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <h2 className="h2" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <MapPin size={22} className="text-accent" /> Upcoming City Famous
-        </h2>
-        <button style={{ background: 'none', border: 'none', color: 'var(--primary-green)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
-          View all <ArrowRight size={16} />
-        </button>
+    <div style={{ padding: '0 1.25rem', marginTop: '1.5rem' }}>
+      
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <div>
+          <h2 className="h3" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-dark)', fontWeight: '700' }}>
+            <MapPin size={18} color="var(--primary-accent)" /> 
+            Ahead: Kanpur
+          </h2>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Arriving in 45 mins. Premium local crafts.</p>
+        </div>
       </div>
 
-      <div className="hide-scroll" style={{ display: 'flex', gap: '0.75rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
-        {specials.map((special) => (
-          <div key={special.id} style={{ 
-            minWidth: '150px', 
-            padding: '0.5rem', 
-            display: 'flex', 
-            flexDirection: 'column',
-            backgroundColor: 'var(--bg-card)',
-            border: '1px solid var(--border-light)',
-            borderRadius: '0.5rem',
-            boxShadow: 'var(--shadow-sm)'
-          }}>
-            <div style={{ 
-              height: '110px', 
-              borderRadius: '0.25rem', 
-              backgroundImage: `url(${special.image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              marginBottom: '0.5rem',
-              position: 'relative',
-              backgroundColor: '#f8f8f8'
-            }}>
+      <div style={{ display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '1rem' }} className="hide-scrollbar">
+        {specials.map((item, index) => (
+          <motion.div 
+            key={item.id}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className="product-card"
+            style={{ minWidth: '160px', flex: '0 0 auto' }}
+          >
+            <div style={{ position: 'relative', width: '100%', paddingBottom: '100%', backgroundColor: '#f1f5f9' }}>
+               <img 
+                src={item.image} 
+                alt={item.name} 
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                loading="lazy"
+              />
               <div style={{
-                position: 'absolute',
-                bottom: '-8px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                background: 'var(--accent-orange)',
-                color: '#fff',
-                fontSize: '0.6rem',
-                fontWeight: '700',
-                padding: '0.2rem 0.4rem',
-                borderRadius: '0.25rem',
-                whiteSpace: 'nowrap',
-                boxShadow: 'var(--shadow-sm)'
+                position: 'absolute', top: '0.5rem', left: '0.5rem',
+                backgroundColor: 'rgba(15, 23, 42, 0.7)', padding: '0.3rem 0.6rem',
+                borderRadius: '0.25rem', fontSize: '0.65rem', fontWeight: '600',
+                color: '#fff', backdropFilter: 'blur(4px)'
               }}>
-                ETA: {special.eta}
+                From {item.city}
               </div>
             </div>
-            <div style={{ marginTop: '0.5rem' }}>
-              <div className="text-xs text-muted" style={{ fontWeight: '600', textTransform: 'uppercase' }}>{special.city}</div>
-              <div className="font-semibold" style={{ fontSize: '0.85rem', marginBottom: '0.25rem', color: 'var(--text-dark)' }}>{special.item}</div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 'auto' }}>
-                <span className="font-bold" style={{ fontSize: '0.9rem', color: 'var(--text-dark)' }}>₹{special.price}</span>
-                <button 
-                  onClick={() => onAddToCart(special)}
-                  style={{ 
-                    backgroundColor: 'transparent',
-                    border: '1px solid var(--primary-green)',
-                    color: 'var(--primary-green)',
-                    fontWeight: '700',
-                    padding: '0.25rem 0.75rem', 
-                    fontSize: '0.75rem',
-                    borderRadius: '0.25rem',
-                    cursor: 'pointer',
-                    textTransform: 'uppercase'
-                  }}
-                >
+            
+            <div style={{ padding: '0.75rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+              <h3 style={{ fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-dark)', marginBottom: '0.5rem', lineHeight: '1.2' }}>{item.name}</h3>
+              
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
+                <span style={{ fontWeight: '700', color: 'var(--text-dark)', fontSize: '0.9rem' }}>₹{item.price}</span>
+                <button className="add-btn" onClick={() => onAddToCart(item)}>
                   ADD
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

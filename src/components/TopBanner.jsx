@@ -11,13 +11,13 @@ const TopBanner = () => {
       viewport={{ once: true }}
       style={{
         height: 'var(--banner-height)',
-        backgroundColor: 'var(--accent-orange)',
-        color: '#fff',
+        backgroundColor: '#0f172a', /* Very dark slate */
+        color: '#f8fafc',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontWeight: '700',
-        fontSize: '0.875rem',
+        fontWeight: '600',
+        fontSize: '0.75rem',
         letterSpacing: '0.5px',
         gap: '0.5rem',
         position: 'sticky',
@@ -25,8 +25,8 @@ const TopBanner = () => {
         zIndex: 50
       }}
     >
-      <Zap size={16} fill="#fff" />
-      <span>5 MIN DELIVERY ON ONGOING TRAIN</span>
+      <Zap size={14} fill="#f59e0b" color="#f59e0b" />
+      <span>FLASH DELIVERY • 5 MIN TO YOUR COACH</span>
     </motion.div>
   );
 };

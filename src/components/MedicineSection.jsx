@@ -147,8 +147,8 @@ const MedicineSection = ({ onAddToCart }) => {
 
               {activeTab === 'rx' && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div style={{ background: '#f0fdf4', border: '1px dashed var(--primary-green)', borderRadius: '12px', padding: '2rem 1rem', textAlign: 'center' }}>
-                    <UploadCloud size={32} color="var(--primary-green)" style={{ margin: '0 auto 0.5rem' }} />
+                  <div style={{ background: '#f0fdf4', border: '1px dashed var(--primary-accent)', borderRadius: '12px', padding: '2rem 1rem', textAlign: 'center' }}>
+                    <UploadCloud size={32} color="var(--primary-accent)" style={{ margin: '0 auto 0.5rem' }} />
                     <h3 style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text-dark)', marginBottom: '0.5rem' }}>Upload Prescription</h3>
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>AI will scan your image and extract the medicines instantly.</p>
                     
@@ -157,7 +157,7 @@ const MedicineSection = ({ onAddToCart }) => {
                     )}
                     
                     {isScanning && (
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: 'var(--primary-green)', fontWeight: '600' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', color: 'var(--primary-accent)', fontWeight: '600' }}>
                         <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} /> Analysing Image...
                       </div>
                     )}
@@ -165,7 +165,7 @@ const MedicineSection = ({ onAddToCart }) => {
 
                   {scanComplete && (
                     <div className="animate-fade-in" style={{ backgroundColor: '#fff', padding: '1rem', borderRadius: '12px', border: '1px solid var(--border-light)' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-green)', fontWeight: '600', marginBottom: '1rem' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--primary-accent)', fontWeight: '600', marginBottom: '1rem' }}>
                         <CheckCircle2 size={18} /> Prescription Verified
                       </div>
                       
@@ -177,7 +177,7 @@ const MedicineSection = ({ onAddToCart }) => {
                           </div>
                           <button 
                             onClick={() => { onAddToCart(med); setModalOpen(false); alert('Added to cart'); }}
-                            style={{ backgroundColor: '#fff', border: '1px solid var(--primary-green)', color: 'var(--primary-green)', fontWeight: '700', padding: '0.3rem 0.8rem', borderRadius: '0.25rem', fontSize: '0.75rem', cursor: 'pointer' }}
+                            style={{ backgroundColor: '#fff', border: '1px solid var(--primary-accent)', color: 'var(--primary-accent)', fontWeight: '700', padding: '0.3rem 0.8rem', borderRadius: '0.25rem', fontSize: '0.75rem', cursor: 'pointer' }}
                           >
                             ADD
                           </button>
