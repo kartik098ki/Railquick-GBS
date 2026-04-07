@@ -1,81 +1,46 @@
 import React from 'react';
-import { LocateFixed, TrainFront } from 'lucide-react';
+import { MapPin, TrainFront } from 'lucide-react';
 
 const LiveDetection = () => {
   return (
     <div style={{ 
-      margin: '1rem', 
-      padding: '1.5rem', 
-      position: 'relative', 
-      overflow: 'hidden',
-      backgroundColor: 'var(--bg-card)',
-      border: '1px solid var(--border-light)',
-      borderRadius: '12px',
-      boxShadow: 'var(--shadow-sm)'
+      backgroundColor: 'var(--bg-card)', 
+      padding: '0.75rem 1rem', 
+      borderBottom: '1px solid var(--border-light)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ position: 'relative' }}>
+          <MapPin size={22} color="var(--primary-green)" />
+          {/* Subtle pulse */}
+          <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '50%', background: 'rgba(12, 131, 31, 0.2)' }} className="radar-ping"></div>
+        </div>
+        
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+            <h3 style={{ fontSize: '0.85rem', fontWeight: '700', color: 'var(--text-dark)' }}>Live Train Radar</h3>
+            <TrainFront size={14} color="var(--text-muted)" />
+          </div>
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Location Synced: Coach S4 - 42(M)</span>
+        </div>
+      </div>
       
-      {/* Radar rings animation backdrop */}
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '100px',
-        height: '100px',
-        borderRadius: '50%',
+      <button style={{
         background: 'rgba(12, 131, 31, 0.1)',
-        zIndex: 0,
-      }} className="radar-ping"></div>
-
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <div style={{
-          background: 'var(--primary-green)',
-          padding: '0.75rem',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#fff',
-          boxShadow: '0 0 10px rgba(12, 131, 31, 0.3)'
-        }}>
-          <LocateFixed size={28} />
-        </div>
-        <div style={{ flex: 1 }}>
-          <h2 className="h3" style={{ marginBottom: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-dark)' }}>
-            Live Seat Radar <TrainFront size={18} className="text-muted" />
-          </h2>
-          <p className="text-sm text-muted">
-            Auto-detecting your seat for seamless delivery. Make sure location is turned on.
-          </p>
-        </div>
-      </div>
-      
-      <div style={{ 
-        marginTop: '1rem', 
-        padding: '0.75rem', 
-        background: 'var(--bg-main)', 
-        borderRadius: '0.5rem',
-        border: '1px solid var(--border-light)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
+        border: 'none',
+        color: 'var(--primary-green)',
+        fontSize: '0.75rem',
+        fontWeight: '700',
+        padding: '0.35rem 0.6rem',
+        borderRadius: '0.25rem',
+        cursor: 'pointer'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <span style={{ height: '8px', width: '8px', borderRadius: '50%', backgroundColor: 'var(--primary-green)', display: 'inline-block' }}></span>
-          <span className="text-sm font-semibold text-primary">Location Synced: S4 - 42(Middle)</span>
-        </div>
-        <button style={{
-          background: 'none',
-          border: 'none',
-          color: 'var(--text-muted)',
-          fontSize: '0.75rem',
-          textDecoration: 'underline',
-          cursor: 'pointer'
-        }}>
-          Change
-        </button>
-      </div>
-
+        Change
+      </button>
     </div>
   );
 };

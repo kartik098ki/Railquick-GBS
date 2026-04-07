@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Search } from 'lucide-react';
 import Header from './components/Header';
 import TopBanner from './components/TopBanner';
 import LiveDetection from './components/LiveDetection';
@@ -32,27 +33,31 @@ function App() {
       <TopBanner />
       <Header cartCount={cart.length} onCartClick={handleCartClick} />
       
-      <main style={{ flex: 1, paddingBottom: 'env(safe-area-inset-bottom)' }}>
-        {/* Animated Hero Text */}
-        <div style={{ padding: '1.5rem 1rem 0.5rem' }} className="animate-slide-down">
-          <h1 className="h1" style={{ marginBottom: '0.5rem', color: 'var(--text-dark)' }}>
-            Essentials delivered in <br />
-            <span style={{ color: 'var(--primary-green)' }}>5 minutes</span> on your seat.
-          </h1>
-          <p className="text-muted text-sm">No waiting. No missing trains.</p>
+      {/* Search Bar - Blinkit staple */}
+      <div style={{ padding: '0.5rem 1rem', backgroundColor: 'var(--primary-yellow)', position: 'sticky', top: 'calc(var(--banner-height) + var(--header-height))', zIndex: 30, borderBottom: '1px solid var(--border-light)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#fff', borderRadius: '0.5rem', padding: '0.6rem 1rem', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', gap: '0.5rem' }}>
+          <Search size={18} color="var(--text-muted)" />
+          <input 
+            type="text" 
+            placeholder="Search 'chips', 'water'..." 
+            style={{ border: 'none', background: 'transparent', width: '100%', outline: 'none', fontSize: '0.9rem', color: 'var(--text-dark)' }} 
+          />
         </div>
+      </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
+      <main style={{ flex: 1, paddingBottom: 'env(safe-area-inset-bottom)' }}>
+        
+        <div className="animate-slide-down">
           <LiveDetection />
         </div>
 
         <MedicineSection onAddToCart={handleAddToCart} />
 
-        <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both' }}>
+        <div className="animate-fade-in" style={{ animationDelay: '100ms', animationFillMode: 'both' }}>
           <UpcomingCitySpecials onAddToCart={handleAddToCart} />
         </div>
 
-        <div className="animate-fade-in" style={{ animationDelay: '300ms', animationFillMode: 'both' }}>
+        <div className="animate-fade-in" style={{ animationDelay: '200ms', animationFillMode: 'both', marginBottom: '4rem' }}>
           <EssentialsGrid onAddToCart={handleAddToCart} />
         </div>
       </main>
